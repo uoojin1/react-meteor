@@ -1,11 +1,4 @@
 import {Meteor} from 'meteor/meteor';
-import {Players} from '../imports/api/players'; // players variable
+import {Players} from '../imports/api/players'; // import players variable from the mongoDB
 
-Meteor.startup(function(){
-    Players.insert({
-        name: 'wowwow',
-        score: 3
-    });
-    console.log(Players.find().fetch());
-
-});
+Meteor.startup(()=>{});
