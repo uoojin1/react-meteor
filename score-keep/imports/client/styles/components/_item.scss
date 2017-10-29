@@ -16,3 +16,18 @@
 .item__message--empty {
     color: #999999;
 }
+
+.item--position-1 {
+    background: $green;
+    border-color: $green-alt;
+}
+
+.item--position-2 {
+    background: $red;
+    border-color: $red-alt;
+}
+
+.item--position-3 {
+    background: $blue;
+    border-color: $blue-alt;
+}
