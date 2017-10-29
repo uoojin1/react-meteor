@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 import {Tracker} from 'meteor/tracker';
 import {Players} from '../imports/api/players'; // importing mongoDB creates miniMongo in the client side
-
+import TitleBar from '../imports/ui/TitleBar';
+import AddPlayer from '../imports/ui/AddPlayer';
 
 const renderPlayers = (playersList) => { //use array.map to map array of objects to array of jsx
     return playersList.map((player) => {
@@ -18,37 +19,19 @@ const renderPlayers = (playersList) => { //use array.map to map array of objects
     });
 };
 
-const handleSubmit = (e) => { 
-    e.preventDefault();// using this will prevent full page refresh
-    let playerName = e.target.playerName.value; // e.target.<name attribute>.value can target the form
-    if (playerName) {
-        Players.insert({ // this inserts to minimongo, which then uses ddp to update MongoDB
-            name: playerName,
-            score: 3
-        });
-    }
-}
-
 Meteor.startup(() => {
     let players;
     Tracker.autorun(() => { // this Tracker.autorun checks for anychange in players and then updates the dom right away
         players = Players.find().fetch();
-        let title = 'account settings';
-        let name = 'Eugene';
+        let title = 'Dynamic Scorekeeper';
+        let subTitle = 'let\'s keep some score!';
         let jsx = (
             <div>
-                <h1>{title}</h1>
-                <p>Hello {name}!</p>
-                <p>This is my second p.</p>
+                <TitleBar title={title} subTitle={subTitle}/>
                 {renderPlayers(players)}
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="playerName" placeholder="Player name"/>
-                    <button>Add Player</button>
-                </form>
+                <AddPlayer/>
             </div>
         );
         ReactDOM.render(jsx, document.getElementById('app'));
     });
-
-    
 });
