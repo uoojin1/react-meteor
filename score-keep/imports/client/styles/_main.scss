@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html { // root = 10px
+    font-size: 62.5%; // of default font value which is 16 px
+}
+
+body {
+    background: #f2f2f2;
+    color: #555555;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem; // 16px
+}
+
+input, button, select {
+    font-size: 1.3rem;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 2.4rem; // root em : root is html element
+}
+
+@import './components/title-bar';
+@import './components/wrapper';
+@import './components/item';
+@import './components/button';
+@import './components/player';
+@import './components/form';
