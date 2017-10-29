@@ -2,7 +2,7 @@ import React from 'react';
 import {Players} from '../api/players'; // importing mongoDB creates miniMongo in the client side
 import PropTypes from 'prop-types';
 import Player from './Player';
-
+import FlipMove from 'react-flip-move';
 
 export default class PlayerList extends React.Component {
 
@@ -21,7 +21,9 @@ export default class PlayerList extends React.Component {
     render() {
         return (
             <div>
-                {this.renderPlayers()}
+                <FlipMove>
+                    {this.renderPlayers()}
+                </FlipMove>    
             </div>
         )
     }

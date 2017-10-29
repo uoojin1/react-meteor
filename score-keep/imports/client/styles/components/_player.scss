@@ -9,6 +9,8 @@
 .player__name {
     font-weight: 300;
     font-size: 1.8rem;
+    max-width: 30rem;
+    overflow-wrap: break-word;
 }
 
 .player__stats {
