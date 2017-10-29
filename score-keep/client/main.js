@@ -10,7 +10,7 @@ import App from '../imports/ui/App';
 Meteor.startup(() => {
     let players;
     Tracker.autorun(() => { // this Tracker.autorun checks for anychange in players and then updates the dom right away
-        players = Players.find().fetch();
+        players = Players.find({},{sort: {score: -1}}).fetch();
         let title = 'Dynamic Scorekeeper';
         ReactDOM.render(<App title={title} players={players}/>, document.getElementById('app'));
     });
