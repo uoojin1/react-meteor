@@ -4,6 +4,7 @@ import {Players} from '../api/players';
 export default class AddPlayer extends React.Component {
     handleSubmit(e) {
         e.preventDefault();// using this will prevent full page refresh
+        debugger;
         let playerName = e.target.playerName.value; // e.target.<name attribute>.value can target the form
         if (playerName) {
             Players.insert({ // this inserts to minimongo, which then uses ddp to update MongoDB
