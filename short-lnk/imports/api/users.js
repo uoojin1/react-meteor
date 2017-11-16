@@ -5,16 +5,12 @@ import { Accounts } from 'meteor/accounts-base';
 // to show correct error message. Only comes here if pw > 8 char
 Accounts.validateNewUser((user) => {
     const email = user.emails[0].address;
-    try {
       new SimpleSchema({
         email: {
           type: String,
           regEx: SimpleSchema.RegEx.Email
         }
       }).validate({email});
-    } catch (e) {
-      throw new Meteor.Error(400, e.message);
-    }
-
+    
     return true;
 });

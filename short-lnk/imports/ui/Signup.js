@@ -12,7 +12,6 @@ export default class Signup extends React.Component {
     }
     onSubmit(e) {
         e.preventDefault();
-
         let email = this.refs.email.value.trim();
         let password = this.refs.password.value.trim();
 
