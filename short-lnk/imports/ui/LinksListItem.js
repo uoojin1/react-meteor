@@ -1,6 +1,7 @@
 import React from 'react';
 import Clipboard from 'clipboard';
 import { Meteor } from 'meteor/meteor';
+import moment from 'moment';
 
 export default class LinksListItem extends React.Component {
     // state with constructor
@@ -22,17 +23,26 @@ export default class LinksListItem extends React.Component {
     componentWillUnmount() {
         this.clipboard.destroy();
     }
+    renderStats(){
+        const visitMessage = this.props.visitedCount === 1 ? 'visit' : 'visits';
+        let visitedMessage = null;
+        if(typeof this.props.lastVisitedAt === 'number') {
+            visitedMessage = `(visited ${ moment(this.props.lastVisitedAt).fromNow() })`
+        }
+        return <div>{this.props.visitedCount} {visitMessage} - {visitedMessage}</div>        
+    }
     render() {
         return (
             <div>
                 <p>{this.props.url}</p>
                 <p>{this.props.shortUrl}</p>
                 <p>{this.props.visible.toString()}</p>
+                {this.renderStats()}
                 <button ref="copy" data-clipboard-text={this.props.shortUrl}>
-                {this.state.justCopied ? 'Copied' : 'Copy'}
+                    {this.state.justCopied ? 'Copied' : 'Copy'}
                 </button>
                 <button onClick={() => {Meteor.call('links.setVisibility', this.props._id, !this.props.visible)}}>
-                {this.props.visible ? 'Hide' : 'Unhide'}
+                    {this.props.visible ? 'Hide' : 'Unhide'}
                 </button>
             </div>
         );
@@ -44,5 +54,7 @@ LinksListItem.prototypes = {
     url: React.PropTypes.string.isRequired,
     userId: React.PropTypes.string.isRequired,
     visible: React.PropTypes.bool.isRequired,
-    shortUrl: React.PropTypes.string.isRequired
+    shortUrl: React.PropTypes.string.isRequired,
+    visitedCount: React.PropTypes.number.isRequired,
+    lastVisitedAt: React.PropTypes.number // allowing null
 }
