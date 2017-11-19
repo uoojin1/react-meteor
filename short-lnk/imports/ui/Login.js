@@ -23,16 +23,18 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h1>Login with your ID and PW</h1>
-                {this.state.error ? <p>{this.state.error}</p> : undefined}
-                <form onSubmit={this.onSubmit.bind(this)} noValidate>
-                    <input type="email" name="email" placeholder="Email" ref="email"/>
-                    <input type="password" name="password" placeholder="Password" ref="password"/>
-                    <button>Login</button>
-                </form>
+            <div className="boxed-view">
+                <div className="boxed-view__box">
+                    <h1>Short Lnk</h1>
+                    {this.state.error ? <p>{this.state.error}</p> : undefined}
+                    <form onSubmit={this.onSubmit.bind(this)} noValidate className="boxed-view__form">
+                        <input type="email" name="email" placeholder="Email" ref="email"/>
+                        <input type="password" name="password" placeholder="Password" ref="password"/>
+                        <button className="button">Login</button>
+                    </form>
 
-                <Link to="/signup">Don't have an account yet?</Link>
+                    <Link to="/signup">Don't have an account yet?</Link>
+                </div>
             </div>
         );
     }
