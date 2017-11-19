@@ -1,2 +1,1 @@
-# react-meteor
-# learning react!
+# Short link application
